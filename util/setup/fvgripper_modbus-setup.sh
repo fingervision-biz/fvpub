@@ -55,6 +55,7 @@ fi
 echo '[user] Download the Modbus module for FV+GripperKit?'
 fvgmodbus_dir=${HOME}/fvgripper_modbus
 if ask_user; then
+  mkdir -p ${fvgmodbus_dir}
   echo -n '  server: '
   read server
   echo -n '  user: '
@@ -86,12 +87,9 @@ fi
 echo '
 ===================================
 
-Instruction: Add the following lines to ~/fv+config.sh
+Instruction: Add the following option in ~/fv+config.sh
 
 FVG_OPTS=--modbus
-
-ROS_MASTER_URI=http://10.10.6.203:11311
-ROS_IP=10.10.6.203
 '
 echo '[user] Edit ~/fv+config.sh?'
 if ask; then
