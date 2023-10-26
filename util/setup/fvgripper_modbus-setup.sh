@@ -60,13 +60,14 @@ if ask_user; then
   read server
   echo -n '  user: '
   read user
-  scp -rp ${user}@${server}:'ros_ws/fvbiz/fvindustrial/fvgripper_modbus/fvgripper_modbus_srv.{py,sh}' ${fvgmodbus_dir}
+  scp -rp ${user}@${server}:'ros_ws/fvbiz/fvindustrial/fvgripper_modbus/fvgripper_modbus_{srv.py,srv.sh,client.py}' ${fvgmodbus_dir}
 fi
 
 echo '[admin] Create the Modbus program links in /sbin?'
 if ask_admin; then
   sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus_srv.py /sbin/
   sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus_srv.sh /sbin/
+  sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus_client.py /sbin/
 fi
 
 
