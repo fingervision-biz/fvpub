@@ -70,6 +70,22 @@ if ask_admin; then
   sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus_client.py /sbin/
 fi
 
+echo '[user] Download the Zimmer-gripper module for FV+GripperKit?'
+zimmer_gripper_dir=${HOME}/zimmer_gripper
+if ask_user; then
+  mkdir -p ${zimmer_gripper_dir}
+  echo -n '  server: '
+  read server
+  echo -n '  user: '
+  read user
+  scp -rp ${user}@${server}:'ros_ws/fvbiz/fvindustrial/zimmer_gripper/geh6000il_cpsl08p1en_driver.py' ${zimmer_gripper_dir}
+fi
+
+echo '[admin] Create the Zimmer-gripper program links in /sbin?'
+if ask_admin; then
+  sudo ln -is ${zimmer_gripper_dir}/geh6000il_cpsl08p1en_driver.py /sbin/
+fi
+
 
 # Configuration:
 echo '
