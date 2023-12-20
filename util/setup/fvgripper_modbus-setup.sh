@@ -53,37 +53,33 @@ if ask_user; then
 fi
 
 echo '[user] Download the Modbus module for FV+GripperKit?'
-fvgmodbus_dir=${HOME}/fvgripper_modbus
+fvgmodbus_dir=${HOME}/
 if ask_user; then
-  mkdir -p ${fvgmodbus_dir}
-  echo -n '  server: '
-  read server
-  echo -n '  user: '
-  read user
-  scp -rp ${user}@${server}:'ros_ws/fvbiz/fvindustrial/fvgripper_modbus/fvgripper_modbus_{srv.py,srv.sh,client.py}' ${fvgmodbus_dir}
+  echo -n '  license-key: '
+  read license_key
+  curl --insecure -X 'GET' 'https://49.212.132.78/download/fvg_modbus' -H 'accept: application/json' -H "license-key: ${license_key}" --output /tmp/download.tar.gz
+  tar zxvf /tmp/download.tar.gz -C $fvgmodbus_dir
 fi
 
 echo '[admin] Create the Modbus program links in /sbin?'
 if ask_admin; then
-  sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus_srv.py /sbin/
-  sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus_srv.sh /sbin/
-  sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus_client.py /sbin/
+  sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus/fvgripper_modbus_srv.py /sbin/
+  sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus/fvgripper_modbus_srv.sh /sbin/
+  sudo ln -is ${fvgmodbus_dir}/fvgripper_modbus/fvgripper_modbus_client.py /sbin/
 fi
 
 echo '[user] Download the Zimmer-gripper module for FV+GripperKit?'
-zimmer_gripper_dir=${HOME}/zimmer_gripper
+zimmer_gripper_dir=${HOME}/
 if ask_user; then
-  mkdir -p ${zimmer_gripper_dir}
-  echo -n '  server: '
-  read server
-  echo -n '  user: '
-  read user
-  scp -rp ${user}@${server}:'ros_ws/fvbiz/fvindustrial/zimmer_gripper/geh6000il_cpsl08p1en_driver.py' ${zimmer_gripper_dir}
+  echo -n '  license-key: '
+  read license_key
+  curl --insecure -X 'GET' 'https://49.212.132.78/download/zimmer_gripper' -H 'accept: application/json' -H "license-key: ${license_key}" --output /tmp/download.tar.gz
+  tar zxvf /tmp/download.tar.gz -C $zimmer_gripper_dir
 fi
 
 echo '[admin] Create the Zimmer-gripper program links in /sbin?'
 if ask_admin; then
-  sudo ln -is ${zimmer_gripper_dir}/geh6000il_cpsl08p1en_driver.py /sbin/
+  sudo ln -is ${zimmer_gripper_dir}/zimmer_gripper/geh6000il_cpsl08p1en_driver.py /sbin/
 fi
 
 
