@@ -59,6 +59,7 @@ if ask_user; then
   read license_key
   curl --insecure -X 'GET' 'https://49.212.132.78/download/fvg_modbus' -H 'accept: application/json' -H "license-key: ${license_key}" --output /tmp/download.tar.gz
   tar zxvf /tmp/download.tar.gz -C $fvgmodbus_dir
+  rm /tmp/download.tar.gz
 fi
 
 echo '[admin] Create the Modbus program links in /sbin?'
@@ -75,6 +76,7 @@ if ask_user; then
   read license_key
   curl --insecure -X 'GET' 'https://49.212.132.78/download/zimmer_gripper' -H 'accept: application/json' -H "license-key: ${license_key}" --output /tmp/download.tar.gz
   tar zxvf /tmp/download.tar.gz -C $zimmer_gripper_dir
+  rm /tmp/download.tar.gz
 fi
 
 echo '[admin] Create the Zimmer-gripper program links in /sbin?'
