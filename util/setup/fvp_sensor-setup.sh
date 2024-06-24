@@ -99,8 +99,8 @@ echo "[$set_name]Do you want to copy files related to FVP$serial_code?"
 if ask; then
   eval "$ros_bash_config"
   roscd ay_fv_extra
-  dst_data=~/SensorKit/SensorKit_$set_name/'納品データ/ay_fv_extra'
-  dst_check=~/SensorKit/SensorKit_$set_name/'動作確認'
+  dst_data=~/SensorKit/SensorKit_$set_name/Supplementary/ay_fv_extra
+  dst_check=~/SensorKit/SensorKit_$set_name/Validation
   mkdir -p $dst_data/{config,launch,data_gen}
   mkdir -p $dst_check
   mv launch/fvp$serial_code.launch $dst_data/launch/

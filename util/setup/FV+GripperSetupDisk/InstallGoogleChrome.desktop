@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Install Google Chrome
+Comment=Install Google Chrome
+Exec=xdg-open https://www.google.com/chrome/
+Icon=web-browser
+Terminal=false
+Type=Application
